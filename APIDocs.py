@@ -10,11 +10,12 @@ class APIDocs:
             "version": "0.0.5",
             "how_to_use": [
                 "Make a GET request to the API and add one of the following function names & parameters as query string parameters",
-                "For example: api.url.on.aws/?function_name=compute_age&dob=01/01/1950",
-                "For example: api.url.on.aws/?function_name=extract_first_number&number=I want 55 fries and 55 burgers",
-                "For example: api.url.on.aws/?function_name=to_10dlc_format&phone_number=My phone number is (970) 555-4444",
-                "For example: api.url.on.aws/?function_name=to_human_phone_format&phone_number=+13334445555",
-                "For example: api.url.on.aws/?function_name=extract_first_last_string&text=Zack Jones&delimiter=%20"
+                "For example: api.url.on.aws/?function=compute_age&dob=01/01/1950",
+                "For example: api.url.on.aws/?function=extract_first_number&number=I want 55 fries and 55 burgers",
+                "For example: api.url.on.aws/?function=to_10dlc_format&phone_number=My phone number is (970) 555-4444",
+                "For example: api.url.on.aws/?function=to_human_phone_format&phone_number=+13334445555",
+                "For example: api.url.on.aws/?function=extract_first_last_string&text=Zack Jones&delimiter=%20",
+                "For example: api.url.on.aws/?function=to_system_time&date_input=2026-06-10"
             ],
             "routes": [
                 {
@@ -144,6 +145,29 @@ class APIDocs:
                             "type": "string",
                             "example": " ",
                             "description": "Delimiter that was used"
+                        }
+                    }
+                },
+                {
+                    "function_name": "to_system_time",
+                    "description": "Convert a date or datetime input to system time format",
+                    "parameters": {
+                        "date_input": {
+                            "type": "string",
+                            "example": "2026-06-10",
+                            "description": "A date or datetime in any parseable format"
+                        }
+                    },
+                    "returns": {
+                        "system_time": {
+                            "type": "string",
+                            "example": "2026-06-10 00:00:00.0",
+                            "description": "The normalized system time"
+                        },
+                        "original": {
+                            "type": "string",
+                            "example": "2026-06-10",
+                            "description": "The input value provided"
                         }
                     }
                 }

@@ -8,7 +8,7 @@ def lambda_handler(event, context):
     # Read from query string parameters (for GET requests)
     params = event.get("queryStringParameters") or {}
     print(f"Params are: {params}")
-    function_name = params.get("function")
+    function_name = params.get("function") or params.get("function_name")
 
     result = None
     error = None
@@ -56,6 +56,14 @@ def lambda_handler(event, context):
             result = Utils.extract_first_last_string(text, delimiter)
             if result is None:
                 error = f"Invalid text: {text}"
+    elif function_name == "to_system_time":
+        date_input = params.get("date_input")
+        if not date_input:
+            error = "Missing 'date_input' query parameter"
+        else:
+            result = Utils.to_system_time(date_input)
+            if result is None:
+                error = f"Invalid date input: {date_input}"
     else:
         error = f"Unknown function: {function_name}"
 

@@ -1,6 +1,6 @@
 import json, base64, re
 from urllib.request import Request, urlopen
-from datetime import datetime
+from datetime import datetime, date
 from dateutil import parser
 
 class Utils:
@@ -99,6 +99,25 @@ class Utils:
                     "delimiter": delimiter
                 }
         except (AttributeError, TypeError, ValueError):
+            pass
+        return result
+
+    @staticmethod
+    def to_system_time(date_input):
+        result = None
+        try:
+            if isinstance(date_input, datetime):
+                dt_value = date_input
+            elif isinstance(date_input, date):
+                dt_value = datetime.combine(date_input, datetime.min.time())
+            else:
+                dt_value = parser.parse(str(date_input))
+
+            result = {
+                "system_time": dt_value.strftime("%Y-%m-%d %H:%M:%S") + ".0",
+                "original": date_input
+            }
+        except (ValueError, TypeError, OverflowError):
             pass
         return result
 
