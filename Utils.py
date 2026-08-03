@@ -114,7 +114,7 @@ class Utils:
                 dt_value = parser.parse(str(date_input))
 
             result = {
-                "system_time": dt_value.strftime("%Y-%m-%d %H:%M:%S") + ".0",
+                "sysdatetime": dt_value.strftime("%Y-%m-%d %H:%M:%S") + ".0",
                 "original": date_input
             }
         except (ValueError, TypeError, OverflowError):
