@@ -159,7 +159,7 @@ class APIDocs:
                         }
                     },
                     "returns": {
-                        "system_time": {
+                        "sysdatetime": {
                             "type": "string",
                             "example": "2026-06-10 00:00:00.0",
                             "description": "The normalized system time"
