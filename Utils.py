@@ -128,3 +128,29 @@ class PayloadObject():
     
     def get_key(self, key): return self.payload[key]
     def __str__(self): return json.dumps(self.payload)
+
+@staticmethod
+    def calculate_days_difference(start_date_str, end_date_str):
+        try:
+            if not start_date_str or not end_date_str:
+                raise ValueError("One or both date strings are empty/null.")
+
+            start_date = parser.parse(start_date_str)
+            end_date = parser.parse(end_date_str)
+            
+            start_date = start_date.replace(tzinfo=None)
+            end_date = end_date.replace(tzinfo=None)
+
+            delta = end_date - start_date
+            
+            return {
+                "days_difference": delta.days,
+                "isValid": True
+            }
+            
+        except Exception as e:
+            return {
+                "days_difference": None,
+                "isValid": False,
+                "error": str(e)
+            }
