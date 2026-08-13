@@ -64,6 +64,16 @@ def lambda_handler(event, context):
             result = Utils.to_system_time(date_input)
             if result is None:
                 error = f"Invalid date input: {date_input}"
+    elif function_name == "calculate_days_difference":
+            start_date = params.get("start_date")
+            end_date = params.get("end_date")
+            
+            if not start_date or not end_date:
+                error = "Missing 'start_date' or 'end_date' query parameters"
+            else:
+                result = Utils.calculate_days_difference(start_date, end_date)
+                if not result.get("isValid"):
+                    error = result.get("error", f"Invalid date formats: {start_date}, {end_date}")
     else:
         error = f"Unknown function: {function_name}"
 
