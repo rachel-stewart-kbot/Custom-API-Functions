@@ -15,7 +15,8 @@ class APIDocs:
                 "For example: api.url.on.aws/?function=to_10dlc_format&phone_number=My phone number is (970) 555-4444",
                 "For example: api.url.on.aws/?function=to_human_phone_format&phone_number=+13334445555",
                 "For example: api.url.on.aws/?function=extract_first_last_string&text=Zack Jones&delimiter=%20",
-                "For example: api.url.on.aws/?function=to_system_time&date_input=2026-06-10"
+                "For example: api.url.on.aws/?function=to_system_time&date_input=2026-06-10",
+                "For example: api.url.on.aws/?function=calculate_days_difference&start_date=2026-08-07&end_date=2026-08-13"
             ],
             "routes": [
                 {
@@ -168,6 +169,34 @@ class APIDocs:
                             "type": "string",
                             "example": "2026-06-10",
                             "description": "The input value provided"
+                        }
+                    },
+                    {
+                        "function_name": "calculate_days_difference",
+                        "description": "Calculate the difference in days between two date strings",
+                        "parameters": {
+                            "start_date": {
+                                "type": "string",
+                                "example": "2026-08-07 10:00:00",
+                                "description": "The starting date/timestamp (e.g., user_LastReportTouchDate)"
+                            },
+                            "end_date": {
+                                "type": "string",
+                                "example": "2026-08-13 12:00:00",
+                                "description": "The ending date/timestamp (e.g., {CurrentDatetime})"
+                            }
+                        },
+                        "returns": {
+                            "days_difference": {
+                                "type": "int",
+                                "example": 6,
+                                "description": "The computed number of days between the two dates"
+                            },
+                            "isValid": {
+                                "type": "boolean",
+                                "example": True,
+                                "description": "Indicates if the parsing and calculation were successful"
+                            }
                         }
                     }
                 }
